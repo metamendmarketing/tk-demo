@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>materialsPLUS | Buy Your Product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="buy">
+  <div class="page-shell">
+    <div class="brand-bar compact">
+      <div class="brand-mark">
+        <span class="brand-kicker">thyssenkrupp</span>
+        <span class="brand-name">materialsPLUS</span>
+      </div>
+      <p class="brand-copy">Buy your product</p>
+    </div>
+
+    <section class="experience standalone-step">
+      <div class="wizard-layout">
+        <aside class="wizard-sidebar">
+          <div class="summary-card image-card">
+            <img id="buy-image" src="" alt="Selected material image">
+          </div>
+          <div class="summary-card">
+            <p class="card-label">Configured product</p>
+            <p id="buy-product-name"></p>
+            <div id="buy-summary" class="buyer-summary-list"></div>
+          </div>
+        </aside>
+
+        <section class="wizard-card">
+          <div class="section-heading">
+            <p class="eyebrow">Ready To Buy</p>
+            <h2>Review your full recommended order.</h2>
+            <p>These line items are built from your job details, selected product path, and recommended stock configuration.</p>
+          </div>
+
+          <div class="buy-panels">
+            <article class="result-card result-card-primary">
+              <p class="result-label">Job order summary</p>
+              <h4 id="buy-line-title"></h4>
+              <p class="result-reason" id="buy-line-copy"></p>
+              <ul class="benefit-list" id="buy-line-items"></ul>
+            </article>
+            <article class="result-card">
+              <p class="result-label">Whole-job action</p>
+              <div class="buy-cta-stack">
+                <button class="button button-primary" id="add-cart">Add full job to cart</button>
+                <button class="button button-secondary" id="buy-quote">Request quote for full job</button>
+                <button class="button button-secondary" id="save-config">Save full job configuration</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="wizard-actions">
+            <a class="button button-ghost" href="configure.html">Back</a>
+            <div class="action-spacer"></div>
+            <a class="button button-secondary" href="index.html">Start a new search</a>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="flow.js"></script>
+</body>
+</html>

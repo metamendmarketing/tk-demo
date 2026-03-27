@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>materialsPLUS | Your Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="results">
+  <div class="page-shell">
+    <div class="brand-bar compact">
+      <div class="brand-mark">
+        <span class="brand-kicker">thyssenkrupp</span>
+        <span class="brand-name">materialsPLUS</span>
+      </div>
+      <p class="brand-copy" id="mode-badge">Your results</p>
+    </div>
+    <section class="experience standalone-step">
+      <div class="pdp-shell">
+        <div class="pdp-header">
+          <p class="eyebrow">Product Details</p>
+          <h2 id="result-title">Recommended product based on your application.</h2>
+          <p id="result-subtitle">Review the product details, adjust the stock options, and continue into your job build.</p>
+        </div>
+
+        <section class="summary-card pdp-top-summary">
+          <p class="card-label">Selected Requirements</p>
+          <div class="summary-chips" id="summary-chips"></div>
+        </section>
+
+        <section class="wizard-card pdp-product">
+          <div class="pdp-breadcrumbs">
+            <span>Homepage</span>
+            <span>Find Product</span>
+            <span>Product Details</span>
+          </div>
+          <h1 class="pdp-title" id="primary-name"></h1>
+          <div class="pdp-meta-grid" id="pdp-meta-grid"></div>
+          <div class="product-detail-grid">
+            <article class="result-card product-media-card">
+              <img id="primary-product-image" class="product-detail-image" src="" alt="Recommended product image">
+            </article>
+            <article class="result-card result-card-primary product-info-card">
+              <p class="price-line" id="primary-price"></p>
+              <p class="result-use" id="primary-use"></p>
+              <p class="result-reason" id="primary-reason"></p>
+
+              <div class="spec-block">
+                <p class="card-label">Size</p>
+                <div class="size-options" id="size-options"></div>
+              </div>
+
+              <div class="pdp-buy-grid">
+                <div class="spec-block">
+                  <p class="card-label">Select Length</p>
+                  <div class="size-options" id="length-options"></div>
+                </div>
+                <div class="spec-block">
+                  <p class="card-label">Quantity</p>
+                  <input class="pdp-qty" id="primary-qty" type="number" min="1" value="1">
+                </div>
+              </div>
+
+              <div class="spec-block">
+                <p class="card-label">Would you like us to</p>
+                <div class="size-options" id="cut-options"></div>
+              </div>
+
+              <div class="result-actions">
+                <button class="button button-primary" id="cta-buy">Add recommended line to cart</button>
+                <button class="button button-secondary" id="cta-configure">Configure full job</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="pdp-content-grid">
+            <section class="summary-card pdp-inline-card">
+              <p class="card-label">Why This Product</p>
+              <div id="buyer-summary"></div>
+            </section>
+            <section class="summary-card pdp-inline-card">
+              <p class="card-label">Specifications</p>
+              <div class="spec-grid" id="spec-grid"></div>
+            </section>
+            <section class="summary-card pdp-inline-card">
+              <p class="card-label">Shipping and Fulfillment</p>
+              <p id="shipping-copy"></p>
+            </section>
+            <section class="summary-card pdp-inline-card">
+              <p class="card-label">Why Buy From thyssenkrupp materialsPLUS</p>
+              <ul class="benefit-list" id="primary-benefits"></ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="wizard-card bundle-section">
+          <div class="section-heading compact-heading">
+            <p class="eyebrow">Complete the job</p>
+            <h3>Products commonly purchased alongside this line</h3>
+          </div>
+          <div class="bundle-carousel" id="bundle-lines"></div>
+        </section>
+
+        <div class="wizard-actions">
+          <a class="button button-ghost" id="back-link" href="question.html?step=6">Back</a>
+          <div class="action-spacer"></div>
+          <button class="button button-secondary" id="restart-button">Start over</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="flow.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>materialsPLUS | SKU Lookup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="sku">
+  <div class="page-shell">
+    <div class="brand-bar compact">
+      <div class="brand-mark">
+        <span class="brand-kicker">thyssenkrupp</span>
+        <span class="brand-name">materialsPLUS</span>
+      </div>
+      <p class="brand-copy">Search by SKU</p>
+    </div>
+    <section class="experience standalone-step">
+      <div class="section-heading">
+        <p class="eyebrow">Search By SKU</p>
+        <h2>Already know the SKU or part of it?</h2>
+        <p>Enter a product code, SKU, or partial part number to jump directly to a likely match.</p>
+      </div>
+
+      <div class="wizard-layout">
+        <aside class="wizard-sidebar">
+          <div class="summary-card image-card">
+            <img src="https://materialsplus.com/medias/copper.jpg?context=bWFzdGVyfGltYWdlc3w3MTQwMHxpbWFnZS9qcGVnfGFHRXdMMmd6WkM4eE16RTNNREV3TURBME16Z3dOaTlqYjNCd1pYSXVhbkJufDVjNWY5OWI2YWI3ODg4ZWUzOWVlOWI1MjJlZTZiZjMzNTBkMTViNjBmNGM1NTMzZmU2ODdjZmUwMDIwYzc1NzY" alt="Copper material image from materialsPLUS">
+          </div>
+          <div class="summary-card">
+            <p class="card-label">Best for</p>
+            <div class="summary-chips">
+              <span class="chip">Repeat buyers</span>
+              <span class="chip">Known part numbers</span>
+              <span class="chip">Fast reorders</span>
+            </div>
+          </div>
+        </aside>
+
+        <section class="wizard-card">
+          <div class="sku-panel">
+            <p class="question-kicker">Direct lookup</p>
+            <h3>Enter a SKU, partial SKU, or product code.</h3>
+            <p class="question-description">We’ll match your entry to the closest product family and show the most likely path forward.</p>
+            <label class="field-label" for="sku-input">SKU or product code</label>
+            <div class="sku-form">
+              <input id="sku-input" class="sku-input" type="text" placeholder="Example: 6061-PL-250 or 145-RND">
+              <button class="button button-primary" id="sku-submit">Find my SKU</button>
+            </div>
+            <div id="sku-result" class="sku-result hidden"></div>
+          </div>
+
+          <div class="wizard-actions">
+            <a class="button button-ghost" href="index.html">Back</a>
+            <div class="action-spacer"></div>
+            <button class="button button-secondary" id="restart-sku">Reset</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="flow.js"></script>
+</body>
+</html>

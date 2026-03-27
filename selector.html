@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>materialsPLUS | Browse By Material</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="selector">
+  <div class="page-shell">
+    <div class="brand-bar compact">
+      <div class="brand-mark">
+        <span class="brand-kicker">thyssenkrupp</span>
+        <span class="brand-name">materialsPLUS</span>
+      </div>
+      <p class="brand-copy">Browse by material</p>
+    </div>
+    <section class="question-stage">
+      <div class="question-shell">
+        <div class="question-header">
+          <p class="question-kicker" id="question-kicker">Selector step 1</p>
+          <h2 id="question-title"></h2>
+          <p class="question-description" id="question-description"></p>
+        </div>
+        <div class="progress-inline">
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          <p class="progress-text"><span id="progress-step">1</span> of <span id="progress-total">4</span></p>
+        </div>
+        <div class="options-grid visual-grid" id="options-grid"></div>
+        <div class="wizard-actions minimal-actions">
+          <button class="button button-ghost" id="back-button">Back</button>
+          <div class="action-spacer"></div>
+          <button class="button button-secondary" id="restart-button">Start over</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="flow.js"></script>
+</body>
+</html>

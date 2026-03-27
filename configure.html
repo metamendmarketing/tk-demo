@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>materialsPLUS | Configure Your Product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="configure">
+  <div class="page-shell">
+    <div class="brand-bar compact">
+      <div class="brand-mark">
+        <span class="brand-kicker">thyssenkrupp</span>
+        <span class="brand-name">materialsPLUS</span>
+      </div>
+      <p class="brand-copy">Configure your product</p>
+    </div>
+
+    <section class="experience standalone-step">
+      <div class="wizard-layout">
+        <aside class="wizard-sidebar">
+          <div class="summary-card image-card">
+            <img id="configure-image" src="" alt="Selected material image">
+          </div>
+          <div class="summary-card">
+            <p class="card-label">Selected path</p>
+            <p id="configure-product-name"></p>
+            <p id="configure-product-meta"></p>
+          </div>
+        </aside>
+
+        <section class="wizard-card">
+          <div class="section-heading">
+            <p class="eyebrow">Configure</p>
+            <h2>Choose size and order details.</h2>
+            <p>Continue the flow by selecting the configuration that best matches your order.</p>
+          </div>
+
+          <div class="summary-card config-recommendation" id="config-recommendation"></div>
+          <div class="summary-card config-recommendation" id="bundle-recommendation"></div>
+
+          <form class="config-form" id="config-form">
+            <div class="section-heading compact-heading">
+              <p class="eyebrow">Job Details</p>
+              <h3>Tell us about the whole job.</h3>
+            </div>
+            <div class="config-grid">
+              <label class="config-field">
+                <span>Assemblies / units to build</span>
+                <input id="job-units" type="number" min="1" value="1">
+              </label>
+              <label class="config-field">
+                <span>Pieces needed per unit</span>
+                <input id="job-pieces-per-unit" type="number" min="1" value="1">
+              </label>
+              <label class="config-field">
+                <span>Cut length per piece (inches)</span>
+                <input id="job-cut-length" type="number" min="1" value="24">
+              </label>
+              <label class="config-field">
+                <span>Scrap / waste allowance</span>
+                <select id="job-waste">
+                  <option value="5">5%</option>
+                  <option value="10">10%</option>
+                  <option value="15">15%</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="section-heading compact-heading">
+              <p class="eyebrow">Product Setup</p>
+              <h3>Adjust the recommended stock configuration.</h3>
+            </div>
+            <div class="config-grid">
+              <label class="config-field">
+                <span>Form</span>
+                <select id="config-form-factor"></select>
+              </label>
+              <label class="config-field">
+                <span>Size</span>
+                <select id="config-size"></select>
+              </label>
+              <label class="config-field">
+                <span>Length / Cut</span>
+                <select id="config-cut"></select>
+              </label>
+              <label class="config-field">
+                <span>Finish</span>
+                <select id="config-finish"></select>
+              </label>
+              <label class="config-field">
+                <span>Quantity</span>
+                <input id="config-qty" type="number" min="1" value="1">
+              </label>
+              <label class="config-field">
+                <span>Need processing?</span>
+                <select id="config-processing">
+                  <option value="None">None</option>
+                  <option value="Cut to length">Cut to length</option>
+                  <option value="Precision cut">Precision cut</option>
+                  <option value="Fabrication support">Fabrication support</option>
+                </select>
+              </label>
+            </div>
+            <div class="wizard-actions">
+              <a class="button button-ghost" href="results.html">Back</a>
+              <div class="action-spacer"></div>
+              <button class="button button-primary" type="submit">Build full job order</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="flow.js"></script>
+</body>
+</html>

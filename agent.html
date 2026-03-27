@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>materialsPLUS | Materials Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="agent">
+  <div class="page-shell">
+    <div class="brand-bar compact">
+      <div class="brand-mark">
+        <span class="brand-kicker">thyssenkrupp</span>
+        <span class="brand-name">materialsPLUS</span>
+      </div>
+      <p class="brand-copy">Materials specialist</p>
+    </div>
+    <section class="experience standalone-step">
+      <div class="question-shell agent-shell">
+        <div class="question-header agent-header">
+          <p class="question-kicker">Sales Agent</p>
+          <h2>Ask a specialist or let us guide the job.</h2>
+          <p class="question-description">Use a conversational path for FAQ, shipping, pricing, and product help, then continue into the same guided recommendation logic.</p>
+        </div>
+
+        <div class="agent-layout">
+          <section class="wizard-card agent-chat-card">
+            <div class="agent-faq-bar" id="agent-faq-bar">
+              <button type="button" class="chip faq-chip" data-faq="shipping">Shipping</button>
+              <button type="button" class="chip faq-chip" data-faq="pricing">Pricing</button>
+              <button type="button" class="chip faq-chip" data-faq="processing">Processing</button>
+              <button type="button" class="chip faq-chip" data-faq="material_help">Material help</button>
+            </div>
+            <div class="agent-transcript" id="agent-transcript"></div>
+            <div class="agent-options" id="agent-options"></div>
+          </section>
+
+          <aside class="summary-card agent-side-card">
+            <p class="card-label">What this path does</p>
+            <div class="summary-chips">
+              <span class="chip">Answers FAQs</span>
+              <span class="chip">Explains shipping</span>
+              <span class="chip">Guides the job flow</span>
+              <span class="chip">Recommends products</span>
+            </div>
+            <p class="agent-side-copy">This assistant uses the same recommendation engine as the guided flow, but introduces it as a conversational sales experience.</p>
+          </aside>
+        </div>
+
+        <div class="wizard-actions minimal-actions">
+          <a class="button button-ghost" href="index.html">Back</a>
+          <div class="action-spacer"></div>
+          <button class="button button-secondary" id="restart-agent">Start over</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="flow.js"></script>
+</body>
+</html>

@@ -16,19 +16,15 @@
         <span class="brand-kicker">thyssenkrupp</span>
         <span class="brand-name">materialsPLUS</span>
       </div>
-      <p class="brand-copy">Industrial metals, simplified</p>
+      <div class="brand-bar-fill" aria-hidden="true"></div>
     </div>
     <main>
       <section class="hero hero-cards-only" id="strategy">
         <div class="section-heading hero-heading">
           <p class="eyebrow">Find Your Product</p>
-          <h1>Choose how you want to search.</h1>
         </div>
         <div class="path-grid">
           <article class="path-card">
-            <div class="path-visual">
-              <img src="https://materialsplus.com/medias/aluminum.jpg?context=bWFzdGVyfGltYWdlc3w0MzcxMHxpbWFnZS9qcGVnfGFEbGxMMmcwTUM4eE16RTNNREV3TURFd09UTTBNaTloYkhWdGFXNTFiUzVxY0djfGQ4YmRhMzcwYWUwNjY1NGI0MWI0ZjY0OTlkZjA3ZTI5MzZjOTI2ZmM5ZWNjNjY3ZDQ1YjMzNWIzMWQyZGZkYzQ" alt="Aluminum material image from materialsPLUS">
-            </div>
             <p class="card-label">Path 1</p>
             <h3>Describe your job</h3>
             <p>Answer a few questions and get a recommended material path for your application.</p>
@@ -40,9 +36,6 @@
             <button class="button button-primary" id="start-guided-inline">Describe my job</button>
           </article>
           <article class="path-card path-card-secondary">
-            <div class="path-visual">
-              <img src="https://materialsplus.com/medias/stainless-steel.jpg?context=bWFzdGVyfGltYWdlc3w3NjUwN3xpbWFnZS9qcGVnfGFEQTVMMmcwTVM4eE16RTNNREV3TURFME1qRXhNQzl6ZEdGcGJteGxjM010YzNSbFpXd3VhbkJufDUzNjVkMDU5NDU5MjQ0MTFlNGVhMTU5NDQ5NjkyNDc0ZjkxMzc4YjlmMGYzNGI1ZDM4NmE4OGQwMjFhOGVmY2U" alt="Stainless steel material image from materialsPLUS">
-            </div>
             <p class="card-label">Path 2</p>
             <h3>Browse by material</h3>
             <p>Start with material, then refine by alloy, shape, and product type.</p>
@@ -54,20 +47,99 @@
             <button class="button button-secondary" id="start-selector-inline">Browse by material</button>
           </article>
           <article class="path-card">
-            <div class="path-visual">
-              <img src="https://materialsplus.com/medias/copper.jpg?context=bWFzdGVyfGltYWdlc3w3MTQwMHxpbWFnZS9qcGVnfGFHRXdMMmd6WkM4eE16RTNNREV3TURBME16Z3dOaTlqYjNCd1pYSXVhbkJufDVjNWY5OWI2YWI3ODg4ZWUzOWVlOWI1MjJlZTZiZjMzNTBkMTViNjBmNGM1NTMzZmU2ODdjZmUwMDIwYzc1NzY" alt="Copper material image from materialsPLUS">
-            </div>
             <p class="card-label">Path 3</p>
-            <h3>Search by SKU</h3>
-            <p>Enter a known product code, partial SKU, or part number to jump straight to a likely match.</p>
+            <h3>Talk to a materials specialist</h3>
+            <p>Chat with a guided sales agent trained to answer common buying questions and walk you into the right material path.</p>
             <ul class="benefit-list">
-              <li>Direct known-item lookup</li>
-              <li>Fast reorder flow</li>
-              <li>Best for repeat buyers</li>
+              <li>FAQ, shipping, and pricing guidance</li>
+              <li>Conversational job discovery</li>
+              <li>Guided recommendation path</li>
             </ul>
-            <button class="button button-secondary" id="start-sku-inline">Search by SKU</button>
+            <button class="button button-secondary" id="start-agent-inline">Talk to a specialist</button>
           </article>
         </div>
+
+        <section class="home-search-card">
+          <div class="section-heading compact-heading">
+            <p class="eyebrow">Quick Search</p>
+            <h3>Already know a SKU or product code?</h3>
+            <p>Search a known part number without leaving the page.</p>
+          </div>
+          <div class="sku-form">
+            <input id="home-sku-input" class="sku-input" type="text" placeholder="Example: ALCHA00013 or 145-RND">
+            <button class="button button-secondary" id="home-sku-submit">Search</button>
+          </div>
+          <div id="home-sku-result" class="sku-result hidden"></div>
+        </section>
+
+        <section class="trust-grid">
+          <article class="note-card review-slider-card">
+            <div class="trustpilot-brand">
+              <span class="trustpilot-stars">★★★★★</span>
+              <strong>Excellent</strong>
+            </div>
+            <p class="review-count">Based on industrial buyer feedback</p>
+            <h3 id="review-title">"This made it much easier to narrow the right material fast."</h3>
+            <p id="review-copy">Buyers often need a faster path than catalog browsing alone, especially when the exact alloy is still unclear.</p>
+            <div class="review-slider-controls">
+              <button class="button button-ghost review-nav" id="review-prev">Previous</button>
+              <button class="button button-ghost review-nav" id="review-next">Next</button>
+            </div>
+          </article>
+          <article class="note-card benefits-card">
+            <p class="eyebrow">Why Buy From thyssenkrupp</p>
+            <h3>Built around the needs of industrial buyers.</h3>
+            <ul class="check-list">
+              <li>Domestic sourcing and program-ready material supply</li>
+              <li>Cut-to-length, fabrication, kitting, and processing support</li>
+              <li>Parcel, freight, and staged release fulfillment options</li>
+              <li>Faster product selection with guided recommendation paths</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="featured-products">
+          <div class="section-heading compact-heading">
+            <p class="eyebrow">Featured Products</p>
+            <h3>Popular starting points for common jobs</h3>
+            <p>Three common material paths buyers often land on after the guided recommendation.</p>
+          </div>
+          <div class="strategy-grid">
+            <article class="strategy-card product-spotlight">
+              <p class="card-label">Structural Default</p>
+              <h3>6061 Aluminum</h3>
+              <p>General-purpose aluminum for frames, brackets, housings, and fabricated parts.</p>
+              <div class="buyer-summary-list">
+                <span>Lightweight</span>
+                <span>Fabrication-friendly</span>
+                <span>Common stock</span>
+              </div>
+              <button class="button button-primary product-spotlight-button">Add to Cart</button>
+            </article>
+            <article class="strategy-card product-spotlight">
+              <p class="card-label">Corrosion Choice</p>
+              <h3>316 Stainless Steel</h3>
+              <p>Premium stainless path for marine, washdown, and harsher exposure conditions.</p>
+              <div class="buyer-summary-list">
+                <span>Corrosion resistance</span>
+                <span>Harsh environments</span>
+                <span>Durability</span>
+              </div>
+              <button class="button button-primary product-spotlight-button">Add to Cart</button>
+            </article>
+            <article class="strategy-card product-spotlight">
+              <p class="card-label">Electrical Path</p>
+              <h3>6101 Aluminum</h3>
+              <p>Strong fit for bus bar, power distribution, and conductivity-driven assemblies.</p>
+              <div class="buyer-summary-list">
+                <span>Conductive</span>
+                <span>Power distribution</span>
+                <span>Cut-to-length ready</span>
+              </div>
+              <button class="button button-primary product-spotlight-button">Add to Cart</button>
+            </article>
+          </div>
+        </section>
       </section>
     </main>
   </div>

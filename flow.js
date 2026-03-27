@@ -378,6 +378,55 @@ function renderQuestionPage() {
   });
 }
 
+function getSkuMatch(value) {
+  if (!value) {
+    return {
+      title: "Search needed",
+      subtitle: "Enter a SKU or product code",
+      body: "Please enter a SKU, partial SKU, or product code to continue."
+    };
+  }
+
+  const normalized = value.toUpperCase();
+  let match = {
+    title: "Matched product family",
+    subtitle: "Closest product path found",
+    body: "We matched your entry to the nearest product family. Review the likely product path and confirm dimensions, availability, and quote details."
+  };
+
+  if (normalized.includes("6061") || normalized.includes("ALCHA")) {
+    match = {
+      title: "6061 Aluminum product path",
+      subtitle: "Closest match: 6061 aluminum family",
+      body: "We found a likely 6061 aluminum match. Continue into 6061 product families and compare plate, channel, bar, or tube variations."
+    };
+  } else if (normalized.includes("316")) {
+    match = {
+      title: "316 Stainless product path",
+      subtitle: "Closest match: 316 corrosion-resistant products",
+      body: "We found a likely 316 stainless match. Continue into 316 product families and compare related corrosion-resistant options."
+    };
+  } else if (normalized.includes("145")) {
+    match = {
+      title: "145 Copper product path",
+      subtitle: "Closest match: machinable copper bar stock",
+      body: "We found a likely 145 copper match. Continue into machinable copper bar products and compare related conductive options."
+    };
+  }
+
+  return match;
+}
+
+function renderSkuResult(target, value) {
+  const match = getSkuMatch(value.trim());
+  target.classList.remove("hidden");
+  target.innerHTML = `
+    <p class="card-label">${match.title}</p>
+    <h4>${match.subtitle}</h4>
+    <p>${match.body}</p>
+  `;
+}
+
 function getSelectorOptions(stepId, answers) {
   if (stepId === "material") {
     return selectorSteps[0].options.map((option) => ({
@@ -1320,46 +1369,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const skuResult = document.getElementById("sku-result");
     const restartSku = document.getElementById("restart-sku");
     const renderSkuMatch = () => {
-      const value = skuInput.value.trim();
-      if (!value) {
-        skuResult.classList.remove("hidden");
-        skuResult.innerHTML = "<p>Please enter a SKU, partial SKU, or product code to continue.</p>";
-        return;
-      }
-
-      const normalized = value.toUpperCase();
-      let match = {
-        title: "Matched product family",
-          subtitle: "Closest product path found",
-          body: "We matched your entry to the nearest product family. Review the likely product path and confirm dimensions, availability, and quote details."
-      };
-
-      if (normalized.includes("6061")) {
-        match = {
-          title: "6061 Aluminum product path",
-          subtitle: "Closest match: 6061 plate or bar family",
-          body: "We found a likely 6061 aluminum match. Continue into the 6061 product family and compare nearby plate, bar, and tube variations."
-        };
-      } else if (normalized.includes("316")) {
-        match = {
-          title: "316 Stainless product path",
-          subtitle: "Closest match: 316 corrosion-resistant products",
-          body: "We found a likely 316 stainless match. Continue into 316 product families and compare related corrosion-resistant options."
-        };
-      } else if (normalized.includes("145")) {
-        match = {
-          title: "145 Copper product path",
-          subtitle: "Closest match: machinable copper bar stock",
-          body: "We found a likely 145 copper match. Continue into machinable copper bar products and compare related conductive options."
-        };
-      }
-
-      skuResult.classList.remove("hidden");
-      skuResult.innerHTML = `
-        <p class="card-label">${match.title}</p>
-        <h4>${match.subtitle}</h4>
-        <p>${match.body}</p>
-      `;
+      renderSkuResult(skuResult, skuInput.value);
     };
 
     skuSubmit.addEventListener("click", renderSkuMatch);
@@ -1373,6 +1383,82 @@ document.addEventListener("DOMContentLoaded", () => {
       skuResult.innerHTML = "";
       skuResult.classList.add("hidden");
     });
+    return;
+  }
+
+  if (page === "agent") {
+    const transcript = document.getElementById("agent-transcript");
+    const options = document.getElementById("agent-options");
+    const restart = document.getElementById("restart-agent");
+    const faqButtons = document.querySelectorAll(".faq-chip");
+    const faqAnswers = {
+      shipping: "We can support parcel, freight, and staged releases depending on cut length, processing, and order volume.",
+      pricing: "Pricing depends on alloy, shape, size, quantity, and processing. This demo uses indicative pricing and quantity guidance only.",
+      processing: "Common value-added services include cut-to-length, precision prep, fabrication support, and kitting.",
+      material_help: "If you do not know the exact alloy yet, I can ask a few job questions and narrow the best-fit material path."
+    };
+    let stepIndex = -1;
+
+    const addMessage = (role, text) => {
+      const item = document.createElement("div");
+      item.className = `agent-message ${role}`;
+      item.innerHTML = `<p>${text}</p>`;
+      transcript.appendChild(item);
+      transcript.scrollTop = transcript.scrollHeight;
+    };
+
+    const renderAgentOptions = (question) => {
+      options.innerHTML = "";
+      const questionOptions = getGuidedOptions(question, getAnswers());
+      questionOptions.forEach((option) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "option-card agent-option-card";
+        button.innerHTML = `
+          <span class="option-body">
+            <span class="option-title-row">${question.id === "industry" ? "" : getOptionIcon(option.value)}<span class="option-title">${option.label}</span></span>
+            <span class="option-copy">${option.copy}</span>
+          </span>
+        `;
+        button.addEventListener("click", () => {
+          addMessage("user", option.label);
+          setAnswer(question.id, option.value);
+          stepIndex += 1;
+          if (stepIndex >= questions.length) {
+            addMessage("bot", "I have enough to recommend a product path. I’m opening the recommended product now.");
+            setMode("guided");
+            window.location.href = "results.html";
+            return;
+          }
+          const nextQuestion = questions[stepIndex];
+          const content = personalizeQuestion(nextQuestion, getAnswers());
+          addMessage("bot", `<strong>${content.title}</strong><br>${content.description}`);
+          renderAgentOptions(nextQuestion);
+        });
+        options.appendChild(button);
+      });
+    };
+
+    const startAgentFlow = () => {
+      clearAnswers();
+      setMode("guided");
+      transcript.innerHTML = "";
+      stepIndex = 0;
+      addMessage("bot", "I can answer common buying questions or help you describe the job. Let’s start with the industry.");
+      const firstQuestion = questions[0];
+      renderAgentOptions(firstQuestion);
+    };
+
+    faqButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const faq = button.dataset.faq;
+        addMessage("user", button.textContent);
+        addMessage("bot", faqAnswers[faq]);
+      });
+    });
+
+    restart.addEventListener("click", startAgentFlow);
+    startAgentFlow();
     return;
   }
 
@@ -1518,8 +1604,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const startInline = document.getElementById("start-guided-inline");
   const startSelectorInline = document.getElementById("start-selector-inline");
-  const startSkuInline = document.getElementById("start-sku-inline");
+  const startAgentInline = document.getElementById("start-agent-inline");
+  const homeSkuInput = document.getElementById("home-sku-input");
+  const homeSkuSubmit = document.getElementById("home-sku-submit");
+  const homeSkuResult = document.getElementById("home-sku-result");
+  const reviewTitle = document.getElementById("review-title");
+  const reviewCopy = document.getElementById("review-copy");
+  const reviewPrev = document.getElementById("review-prev");
+  const reviewNext = document.getElementById("review-next");
   const restartLanding = document.getElementById("restart-landing");
+  const reviewItems = [
+    {
+      title: "\"This made it much easier to narrow the right material fast.\"",
+      copy: "Buyers often need a faster path than catalog browsing alone, especially when the exact alloy is still unclear."
+    },
+    {
+      title: "\"Shipping expectations and cut options were clearer up front.\"",
+      copy: "Supports stock, cut-to-size, freight, parcel, and staged releases based on job size and order profile."
+    },
+    {
+      title: "\"Feels like a knowledgeable sales rep instead of a hard-to-navigate catalog.\"",
+      copy: "Built to reflect how industrial buyers evaluate material availability, processing support, and repeat purchasing."
+    }
+  ];
+  let reviewIndex = 0;
+
+  const renderReview = () => {
+    if (!reviewTitle || !reviewCopy) return;
+    reviewTitle.textContent = reviewItems[reviewIndex].title;
+    reviewCopy.textContent = reviewItems[reviewIndex].copy;
+  };
   const launchGuided = () => {
     clearAnswers();
     setMode("guided");
@@ -1530,10 +1644,10 @@ document.addEventListener("DOMContentLoaded", () => {
     setMode("selector");
     window.location.href = "selector.html?step=1";
   };
-  const launchSku = () => {
+  const launchAgent = () => {
     clearAnswers();
-    clearMode();
-    window.location.href = "sku.html";
+    setMode("guided");
+    window.location.href = "agent.html";
   };
   if (startInline) {
     startInline.addEventListener("click", launchGuided);
@@ -1541,8 +1655,27 @@ document.addEventListener("DOMContentLoaded", () => {
   if (startSelectorInline) {
     startSelectorInline.addEventListener("click", launchSelector);
   }
-  if (startSkuInline) {
-    startSkuInline.addEventListener("click", launchSku);
+  if (startAgentInline) {
+    startAgentInline.addEventListener("click", launchAgent);
+  }
+  if (homeSkuSubmit && homeSkuInput && homeSkuResult) {
+    homeSkuSubmit.addEventListener("click", () => renderSkuResult(homeSkuResult, homeSkuInput.value));
+    homeSkuInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        renderSkuResult(homeSkuResult, homeSkuInput.value);
+      }
+    });
+  }
+  if (reviewPrev && reviewNext) {
+    renderReview();
+    reviewPrev.addEventListener("click", () => {
+      reviewIndex = (reviewIndex - 1 + reviewItems.length) % reviewItems.length;
+      renderReview();
+    });
+    reviewNext.addEventListener("click", () => {
+      reviewIndex = (reviewIndex + 1) % reviewItems.length;
+      renderReview();
+    });
   }
   if (restartLanding) {
     restartLanding.addEventListener("click", () => {

@@ -493,6 +493,15 @@ function buildReason(product, answers) {
   return `${product.pitch} This recommendation aligns with a buyer profile centered on ${labels.slice(0, 3).join(", ").toLowerCase()}.`;
 }
 
+function buildSizeQuantityReason(selection, answers) {
+  const configuration = inferConfiguration(selection, answers).recommended;
+  const jobDefaults = inferJobDefaults(selection, answers);
+  const sizeProfileLabel = summaryLabels.size_profile?.[answers.size_profile]?.toLowerCase() || "the part profile you selected";
+  const volumeLabel = summaryLabels.order_volume?.[answers.order_volume]?.toLowerCase() || "the release volume you selected";
+
+  return `We suggested ${configuration.size} and a starting quantity of ${configuration.quantity} based on ${sizeProfileLabel}, ${volumeLabel}, and an estimated job size of ${jobDefaults.units} unit(s) at ${jobDefaults.piecesPerUnit} piece(s) per unit.`;
+}
+
 function buildNextStep(primary) {
   return `Continue into ${primary.name}, choose the right size and finish, then review the configured product before adding it to cart or saving it for later.`;
 }
@@ -1119,6 +1128,7 @@ function renderResultsPage() {
     document.getElementById("primary-use").textContent = primary.use;
     document.getElementById("primary-price").textContent = detail.price;
     document.getElementById("primary-reason").textContent = buildReason(primary, answers);
+    document.getElementById("size-quantity-reason").textContent = buildSizeQuantityReason({ label: primary.name, family: primary.family }, answers);
     renderBenefits(document.getElementById("primary-benefits"), primary.benefits);
     document.getElementById("primary-product-image").src = detail.image;
     document.getElementById("primary-product-image").alt = primary.name;
@@ -1183,6 +1193,7 @@ function renderResultsPage() {
     document.getElementById("primary-use").textContent = `${alloy.label} ${shape.label} in the ${material.label} family`;
     document.getElementById("primary-price").textContent = "$228 / stock length";
     document.getElementById("primary-reason").textContent = `You selected ${material.label}, then narrowed into ${alloy.label} and ${shape.label.toLowerCase()} products to arrive at this product path.`;
+    document.getElementById("size-quantity-reason").textContent = `The default size and quantity are set as a practical starting point for this ${shape.label.toLowerCase()} product path and can be adjusted before you continue into the job build.`;
     document.getElementById("primary-product-image").src = getMappedProductImage(
       { name: alloy.label, family: material.label },
       shape.label,

@@ -66,6 +66,16 @@ body::before {
   box-shadow: 0 6px 18px rgba(15, 34, 61, 0.06);
 }
 
+.home-header {
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 28px;
+  border: 0;
+  border-radius: 8px;
+  background: #1697db;
+  box-shadow: none;
+}
+
 .brand-bar.compact {
   margin-bottom: 20px;
 }
@@ -75,6 +85,20 @@ body::before {
   flex-direction: column;
   line-height: 1;
   gap: 4px;
+}
+
+.home-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.home-tk-logo {
+  width: 165px;
+  max-width: 28vw;
+  height: auto;
+  display: block;
 }
 
 .brand-kicker {
@@ -93,10 +117,28 @@ body::before {
   letter-spacing: -0.02em;
 }
 
-.brand-bar-fill {
-  flex: 1;
-  height: 42px;
-  border-left: 1px solid rgba(15, 34, 61, 0.1);
+.home-header-search {
+  display: none;
+}
+
+.home-header-right {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+.home-header-account {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.home-signin {
+  padding: 14px 30px;
+  border-radius: 4px;
+  background: #124b8d;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .hero,
@@ -1360,6 +1402,23 @@ section {
   .brand-bar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .home-header {
+    align-items: stretch;
+  }
+
+  .home-header-left,
+  .home-header-right {
+    width: auto;
+  }
+
+  .home-tk-logo {
+    max-width: 42vw;
+  }
+
+  .home-header-right {
+    justify-content: flex-start;
   }
 
   .hero,

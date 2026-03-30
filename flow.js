@@ -1171,7 +1171,6 @@ function renderResultsPage() {
     const primary = ranked[0].product;
     const secondary = ranked[1].product;
 
-    document.getElementById("mode-badge").textContent = "Job descriptor flow";
     const detail = getProductDetail(primary, answers);
     document.getElementById("primary-name").textContent = primary.name;
     document.getElementById("primary-use").textContent = primary.use;
@@ -1237,7 +1236,6 @@ function renderResultsPage() {
     const shape = alloy.shapes[answers.shape];
     const product = shape.products.find((entry) => entry.value === answers.product);
 
-    document.getElementById("mode-badge").textContent = "Material selector";
     document.getElementById("primary-name").textContent = product.label;
     document.getElementById("primary-use").textContent = `${alloy.label} ${shape.label} in the ${material.label} family`;
     document.getElementById("primary-price").textContent = "$228 / stock length";

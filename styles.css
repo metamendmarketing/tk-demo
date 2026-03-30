@@ -1,18 +1,18 @@
 :root {
-  --bg: #eef3f8;
-  --panel: rgba(255, 255, 255, 0.92);
+  --bg: #f2f3f5;
+  --panel: rgba(255, 255, 255, 0.97);
   --panel-strong: #ffffff;
   --text: #0f223d;
   --muted: #51637b;
-  --line: rgba(15, 34, 61, 0.12);
+  --line: rgba(15, 34, 61, 0.1);
   --accent: #009fe3;
   --accent-deep: #0067ac;
   --accent-soft: rgba(0, 159, 227, 0.12);
   --sea: #0f223d;
   --sea-soft: rgba(15, 34, 61, 0.08);
-  --shadow: 0 18px 50px rgba(15, 34, 61, 0.1);
-  --radius-lg: 28px;
-  --radius-md: 18px;
+  --shadow: 0 8px 24px rgba(15, 34, 61, 0.08);
+  --radius-lg: 12px;
+  --radius-md: 10px;
   --radius-sm: 999px;
 }
 
@@ -29,28 +29,17 @@ body {
   min-height: 100vh;
   font-family: "Open Sans", sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(0, 159, 227, 0.18), transparent 28%),
-    radial-gradient(circle at top right, rgba(15, 34, 61, 0.16), transparent 30%),
-    linear-gradient(180deg, #f6f9fc 0%, #eef3f8 52%, #e6edf5 100%);
+  background: #f3f3f4;
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(18, 32, 39, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 32, 39, 0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 80%);
+  display: none;
 }
 
 .page-shell {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 18px 0 72px;
+  padding: 0 0 72px;
 }
 
 .brand-bar {
@@ -69,11 +58,16 @@ body::before {
 .home-header {
   justify-content: space-between;
   gap: 20px;
-  padding: 20px 28px;
+  padding: 20px max(calc((100vw - 1180px) / 2), 16px);
   border: 0;
-  border-radius: 8px;
+  border-radius: 0;
   background: #1697db;
   box-shadow: none;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .brand-bar.compact {
@@ -158,20 +152,14 @@ body::before {
 }
 
 .hero {
-  padding: 36px;
+  padding: 34px;
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
 }
 
 .hero::after {
-  content: "";
-  position: absolute;
-  right: -80px;
-  bottom: -120px;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(196, 104, 44, 0.2) 0%, rgba(196, 104, 44, 0) 72%);
+  display: none;
 }
 
 .eyebrow,
@@ -348,9 +336,9 @@ section {
 
 .path-card {
   padding: 24px;
-  border-radius: 24px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 248, 252, 0.96));
+  background: #ffffff;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
@@ -383,9 +371,9 @@ section {
 .home-search-card {
   margin-top: 18px;
   padding: 24px;
-  border-radius: 24px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(239, 247, 253, 0.94), rgba(255, 255, 255, 0.96));
+  background: #ffffff;
   box-shadow: var(--shadow);
 }
 
@@ -475,7 +463,7 @@ section {
 .note-card,
 .insight-card {
   padding: 22px;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
 }
 
 .strategy-card h3,
@@ -486,7 +474,7 @@ section {
 .progress-card,
 .summary-card {
   padding: 18px;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
 }
 
 .progress-track {
@@ -666,8 +654,8 @@ section {
 
 .bundle-line {
   padding: 12px 14px;
-  border-radius: 14px;
-  background: rgba(15, 34, 61, 0.05);
+  border-radius: var(--radius-md);
+  background: #f6f7f8;
 }
 
 .bundle-line p {
@@ -707,7 +695,7 @@ section {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  border-radius: 18px;
+  border-radius: var(--radius-md);
 }
 
 .price-line {
@@ -730,7 +718,7 @@ section {
 .pdp-qty {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   padding: 12px 14px;
   font: inherit;
   background: rgba(255, 255, 255, 0.96);
@@ -782,14 +770,14 @@ section {
 
 .bundle-card {
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.92);
+  background: #ffffff;
 }
 
 .bundle-card img {
   width: 100%;
-  height: 120px;
+  height: 92px;
   object-fit: cover;
   display: block;
 }
@@ -831,7 +819,7 @@ section {
 .config-field select,
 .config-field input {
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   padding: 14px 16px;
   font: inherit;
   background: rgba(255, 255, 255, 0.95);
@@ -875,9 +863,9 @@ section {
 .sku-result {
   margin-top: 22px;
   padding: 22px;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(0, 159, 227, 0.08), rgba(255, 255, 255, 0.98));
+  background: #ffffff;
 }
 
 .agent-shell {
@@ -976,9 +964,9 @@ section {
   width: 100%;
   text-align: left;
   padding: 0;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.75);
+  background: #ffffff;
   cursor: pointer;
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
   overflow: hidden;
@@ -989,8 +977,8 @@ section {
 .option-card:hover,
 .option-card:focus-visible {
   transform: translateY(-2px);
-  border-color: rgba(196, 104, 44, 0.45);
-  box-shadow: 0 12px 30px rgba(18, 32, 39, 0.1);
+  border-color: rgba(15, 34, 61, 0.16);
+  box-shadow: 0 8px 20px rgba(18, 32, 39, 0.08);
   outline: none;
 }
 
@@ -1021,8 +1009,8 @@ section {
 
 .option-image {
   display: block;
-  aspect-ratio: 16 / 4;
-  background: #dfe8f2;
+  aspect-ratio: 16 / 3.5;
+  background: #eef1f4;
 }
 
 .option-image img {
@@ -1305,7 +1293,7 @@ section {
 
 .result-card {
   padding: 22px;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
 }
 
 .result-card-primary {
